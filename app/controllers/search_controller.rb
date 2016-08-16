@@ -15,17 +15,5 @@ class SearchController < ApplicationController
 
 		render :show
 	end	
-
-	# def apply_args(docu)
-	# 	collection = {}
-	# 	@doc.css('item').each_with_index do |game, i|
-
-	# 		collection[i] = []
-	# 		if 
-	# 			collection[i] << game.at('name').text
-			
-	# 	end
-
-	# end
-
+	
 end
