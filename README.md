@@ -11,9 +11,9 @@ A user can find a list of games on the following parameters:
 MPV
 	- How many Players 
 	- Playing Time (Very Short under 30, Short 30-59, Medium 60 - 119, Long 120+ )
-	- Weight / Complexity Rating (Light under 2.00, Med 2.00 - 2.99, heavy 3.00 +)
+	- Weight / Complexity Rating (Light under 2.00, Normal 2.00 - 2.99, heavy 3.00 +)
+	- Limited to their BGG collection
 
-Stretch
-	- Limit to their collection
+Stretch	
 	- Themes
 	- Mechanics

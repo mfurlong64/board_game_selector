@@ -1,3 +1,30 @@
-<h1> Welcome to <h1>
+<div class="container">
+<h1> Welcome to Board Game Selector</h1>
 
-<p> Utilizing the BGG API, this web app is designed to pick the best board game from your prefences. </p>	
+<p> Searches your BGG username to pick the best games in your collection by players, length and complexity </p>	
+
+	<div class="form=group">
+		<h4>Find a Game</h4>
+  		<%= form_for :search do |f| %>
+  	<p>
+		<%= f.label :bgg_username %>
+		<%= f.text_field :bgg_username, autofocus: true %>
+	</p>
+	<p>
+		<%= f.label :number_of_players %>
+		<%= f.text_field :number_of_players, autofocus: true %>
+	</p>
+	<p>
+		<%= f.label :game_length %>
+		<%= f.select(:game_length, [['Short (under 1 hour)', 'Short'], ['Medium (1-2 hours)', 'Medium'], ['Long (2+ hours)', 'Long']]) %>
+	</p>
+	<p>
+		<%= f.label :complexity %>
+		<%= f.select(:complexity, [['Light', 'Light'], ['Normal', 'Normal'], ['Heavy', 'Heavy']]) %>
+	</p>
+		<%= f.submit "Find Games", class: "btn btn-default" %>
+		<% end %>
+	</div>
+
+
+</div>
