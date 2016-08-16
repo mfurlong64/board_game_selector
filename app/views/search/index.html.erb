@@ -16,13 +16,9 @@
 	</p>
 	<p>
 		<%= f.label :game_length %>
-		<%= f.select(:game_length, [['Short (under 1 hour)', 'Short'], ['Medium (1-2 hours)', 'Medium'], ['Long (2+ hours)', 'Long']]) %>
+		<%= f.select(:game_length, [['Any', 'Any'], ['Short (under 1 hour)', 'Short'], ['Medium (1-2 hours)', 'Medium'], ['Long (2+ hours)', 'Long']]) %>
 	</p>
-	<p>
-		<%= f.label :complexity %>
-		<%= f.select(:complexity, [['Light', 'Light'], ['Normal', 'Normal'], ['Heavy', 'Heavy']]) %>
-	</p>
-		<%= f.submit "Find Games", class: "btn btn-default" %>
+		<%= f.submit "Get Games", class: "btn btn-default" %>
 		<% end %>
 	</div>
 
