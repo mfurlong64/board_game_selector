@@ -1,8 +1,11 @@
 <div class="container-fluid">	
 	<div class="jumbotron text-center list-group">
+		<div id="headery">
 		<h1> Recommended Games </h1>
 
 		<h2>Here are your stats and selected games:</h2>
+		</div>
+		<% @collection_id = [] %>
 		<div id="stats">
 			<h3> <%= @search[:bgg_username] %>'s stats </h3>
 			<p>
@@ -13,11 +16,6 @@
 			</p>
 			<p>
 				Length of Play: <%= @search[:game_length] %>
-			</p>
-			<p>
-			<a href="#" id="ajax-call">
-				Select a Random Game From My Preferences:
-			</a>
 			</p>
 		</div>
 			<% @doc.css('item').map do |game| %>
@@ -48,11 +46,20 @@
 							<%= " - Average Playtime: " + @playtime.to_s + " 	minutes" 	%>
 							<%= " - " + @min_players.to_s + " to " + @max_players.		to_s + " players" %>
 							<%= " - BGG Rating: " + @bgg_rating.to_s.to_f.round(2).	to_s %>
+
+							<% @collection_id << game.attr('objectid') %>
 						</p>
 					</div>
 					<% end %>
 				<% end %>	
 				</p>
 			<% end %> 
+		<div id="random">
+			<a target="_blank" href=<%= "https://boardgamegeek.com/boardgame/#{@collection_id.shuffle.pop}" %>>
+				Select a Random Game From My Current Preferences
+			</a>
+		</div>
+			<%= link_to "Make Another Search", search_index_path %>
+
 	</div>
 </div>

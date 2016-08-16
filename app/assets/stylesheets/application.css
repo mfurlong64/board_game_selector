@@ -23,3 +23,9 @@
 .text-center {
    text-align:center
 }
+
+#stats {
+	position: fixed;
+	top: 0;
+	color: red;
+}
