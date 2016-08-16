@@ -1,11 +1,18 @@
 class SearchController < ApplicationController
-	def create
-		p params
-		@username = params[search][bgg_username]
-		@player_count =  params[search][number_of_players]
-		@length =  params[search][game_length]
-		@wieght =  params[search][complexity]
+	def index
 
-		@all_user_games = 
+	end
+
+	def new
+
+	end
+
+	def create
+		@search = params[:search]
+		@doc = Nokogiri::XML(open("https://boardgamegeek.com/xmlapi2/collection?username="+@search[:bgg_username]+"&own=1")) 
+		
+		render :show
 	end	
+
+
 end

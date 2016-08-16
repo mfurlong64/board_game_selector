@@ -1,0 +1,19 @@
+<div id="container">
+	<h1> Recommended Games </h1>
+
+		<h4>Hey <%= @search[:bgg_username] %>, here are your selected games: </h4>
+
+		<div id="game_line">
+
+				<% @doc.css('item').each do |game| %>
+				
+					<p>
+					<%= game.at('name').text %>
+					( <%= game.css('yearpublished').text %> )
+					</p>
+
+				<% end %> 
+
+		</div>
+
+</div>

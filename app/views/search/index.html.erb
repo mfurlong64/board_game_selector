@@ -5,7 +5,7 @@
 
 	<div class="form=group">
 		<h4>Find a Game</h4>
-  		<%= form_for :search do |f| %>
+  		<%= form_for :search, url: search_index_path do |f| %>
   	<p>
 		<%= f.label :bgg_username %>
 		<%= f.text_field :bgg_username, autofocus: true %>
