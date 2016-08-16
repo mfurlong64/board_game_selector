@@ -18,7 +18,7 @@ Stretch
 	- AJAX calls which instantly load random game 
 	- Save preferences and games tool
 
-## Gem Dependancies
+## Gems
 
 Nokogiri
 
