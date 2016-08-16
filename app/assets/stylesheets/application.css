@@ -13,3 +13,19 @@
  *= require_tree .
  *= require_self
  */
+
+.center-block {
+   margin-left:auto;
+   margin-right:auto;
+   display:center;
+}
+// in case your dealing with a inline element apply this to the parent 
+.text-center {
+   text-align:center
+}
+
+#stats {
+	position: fixed;
+	top: 0;
+	color: red;
+}

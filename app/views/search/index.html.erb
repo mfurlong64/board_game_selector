@@ -1,0 +1,25 @@
+<div class="container jumbotron">
+	<div class="panel panel-primary col-md-8 col-md-offset-2">
+	<h2> Board Game Selector </h2>
+
+	<p> Searches your BGG username to pick the best games in your collection by players and length.
+	</p>
+  		<%= form_for :search, url: search_index_path do |f| %>
+  	<p>
+		<%= f.label :bgg_username %>
+		<%= f.text_field :bgg_username, autofocus: true %>
+	</p>
+	<p>
+		<%= f.label :number_of_players %>
+		<%= f.text_field :number_of_players, autofocus: true %>
+	</p>
+	<p>
+		<%= f.label :game_length %>
+		<%= f.select(:game_length, [['Any', 'Any'], ['Short (under 1 hour)', 'Short'], ['Medium (1-2 hours)', 'Medium'], ['Long (2+ hours)', 'Long']]) %>
+	</p>
+		<%= f.submit "Get Games", class: "btn btn-default" %>
+		<% end %>
+	<br>	
+	</div>
+
+</div>
