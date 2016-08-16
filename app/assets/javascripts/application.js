@@ -14,3 +14,14 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+$(document).ready(function(){
+	gameRandomizer();
+})
+
+function gameRandomizer(){
+	$("a").on("click", function(event) {
+		event.preventDefault();
+		
+	})
+}

@@ -16,16 +16,27 @@ class SearchController < ApplicationController
 		render :show
 	end	
 
-	# def apply_args(docu)
-	# 	collection = {}
-	# 	@doc.css('item').each_with_index do |game, i|
+	 def get_spec_collection(docu)
+	 	collection = []
 
-	# 		collection[i] = []
-	# 		if 
-	# 			collection[i] << game.at('name').text
-			
-	# 	end
+	 	docu.css('item').map do |game, i|
+	 		@playtime = game.css('stats').attr('playingtime')
+	 		@min_players = game.css('stats').attr('minplayers')
+			@max_players = game.css('stats').attr('maxplayers')
+			if @max_players == nil then @max_players = @minplayers end
 
-	# end
+			@playtime = @playtime.to_s.to_i
+			@min_players = @min_players.to_s.to_i
+			@max_players = @max_players.to_s.to_i
+
+	 		if @playtime >= get_length[0] && @playtime <= get_length[1]
+	 			if get_players != 0 && @min_players <= get_players && @max_players >= get_players
+	 				collection << game 
+	 			end
+	 		end
+	 	end
+
+	 	return collection
+	 end
 
 end

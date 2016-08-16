@@ -41,14 +41,13 @@
 							<%= image_tag(game.css('thumbnail').text) %>
 						<p>
 							<%= game.at('name').text %>
+							<%= "( " + game.css('yearpublished').text + " )" %>
 						</p>
 						</a>
-					
 						<p>
-						<%= "( " + game.css('yearpublished').text + " )" %>
-						<%= " - Average Playtime: " + @playtime.to_s + " minutes" 	%>
-						<%= " - " + @min_players.to_s + " to " + @max_players.	to_s + " players" %>
-						<%= " - BGG Rating: " + @bgg_rating.to_s.to_f.round(2).	to_s %>
+							<%= " - Average Playtime: " + @playtime.to_s + " 	minutes" 	%>
+							<%= " - " + @min_players.to_s + " to " + @max_players.		to_s + " players" %>
+							<%= " - BGG Rating: " + @bgg_rating.to_s.to_f.round(2).	to_s %>
 						</p>
 					</div>
 					<% end %>
