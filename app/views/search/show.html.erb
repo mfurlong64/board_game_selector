@@ -6,31 +6,35 @@
 		<div id="game_line">
 
 				<% @doc.css('item').map do |game| %>
-
-					<p>
-					<% @playtime = game.css('stats').attr('playingtime') %>
-					<% @min_players = game.css('stats').attr('minplayers') %>
-					<% @max_players = game.css('stats').attr('maxplayers') %>
-
-					<% if @max_players == nil then @max_players = @minplayers end %>
-
-					<% @game_id = game.attr('objectid') %>
-					
-					<% @playtime = @playtime.to_s.to_i %>
-					<% @min_players = @min_players.to_s.to_i %>
-					<% @max_players = @max_players.to_s.to_i %>
-
-					<% if @playtime >= get_length[0] && @playtime <= get_length[1] %>
-						<% if get_players != 0 && @min_players <= get_players && @max_players >= get_players %>
-
-							<%= game.at('name').text %>
-							<%= "( " + game.css('yearpublished').text + " )" %>
-							<%= " - Average Playtime: " + @playtime.to_s + " minutes" %>
-							<%= " - " + @min_players.to_s + " to " + @max_players.to_s + " players" %>
-						<% end %>
-					<% end %>	
-					</p>
-
+				<div class="game_box">
+						<p>
+						<% @playtime = game.css('stats').attr('playingtime') %>
+						<% @min_players = game.css('stats').attr('minplayers') %>
+						<% @max_players = game.css('stats').attr('maxplayers') %>
+						<% @bgg_rating = game.css('average').attr('value')  %>
+	
+						<% if @max_players == nil then @max_players = @minplayers end %>
+	
+						<% @game_id = game.attr('objectid') %>
+						
+						<% å@playtime = @playtime.to_s.to_i %>
+						<% @min_players = @min_players.to_s.to_i %>
+						<% @max_players = @max_players.to_s.to_i %>
+	
+						<% if @playtime >= get_length[0] && @playtime <= get_length[1] %>
+							<% if get_players != 0 && @min_players <= get_players && @	max_players >= get_players %>
+								<a target="_blank" href=<%= "https://boardgamegeek.com/	boardgame/#{game.attr('objectid')}" %>>
+									<%= image_tag(game.css('thumbnail').text) %>
+									<%= game.at('name').text %>
+								</a>
+								<%= "( " + game.css('yearpublished').text + " )" %>
+								<%= " - Average Playtime: " + @playtime.to_s + " minutes" 	%>
+								<%= " - " + @min_players.to_s + " to " + @max_players.	to_s + " players" %>
+								<%= " - BGG Rating: " + @bgg_rating.to_s.to_f.round(2).	to_s %>
+							<% end %>
+						<% end %>	
+						</p>
+					</div>
 				<% end %> 
 
 		</div>
