@@ -1,12 +1,12 @@
 <div class="container-fluid">	
-	<div class="jumbotron text-center list-group">
-		<div id="headery">
+	<div class="jumbotron list-group">
+		<div id="headery" class="text-center">
 		<h1> Recommended Games </h1>
 
 		<h2>Here are your stats and selected games:</h2>
 		</div>
 		<% @collection_id = [] %>
-		<div id="stats">
+		<div id="stats" class="text-center">
 			<h3> <%= @search[:bgg_username] %>'s stats </h3>
 			<p>
 				All Games in Collection: <%= @doc.css('item').count %>
@@ -17,12 +17,30 @@
 			<p>
 				Length of Play: <%= @search[:game_length] %>
 			</p>
+			<p>
+				Min BGG Rating: <%= @search[:min_bgg_rating] %>
+			</p>
+			<p>
+				<%= link_to "Make Another Search", search_index_path %>
+			</p>
 		</div>
+			<table> 
+				<tr>
+					<th>Image</th>
+					<th>Name</th>
+					<th>Year Published</th>
+					<th>Average Playtime</th>
+					<th>Min to Max Players</th>
+					<th>Bgg Rating</th>
+					<th>Board Game Family</th>
+				</tr>
 			<% @doc.css('item').map do |game| %>
 				<% @playtime = game.css('stats').attr('playingtime') %>
 				<% @min_players = game.css('stats').attr('minplayers') %>
 				<% @max_players = game.css('stats').attr('maxplayers') %>
 				<% @bgg_rating = game.css('average').attr('value')  %>
+				<% @family = game.css('rank').last.attr('name') %>
+				<% @family_id = game.css('rank').last.attr('id') %>
 	
 				<% if @max_players == nil then @max_players = @minplayers end %>
 	
@@ -31,35 +49,42 @@
 				<% @playtime = @playtime.to_s.to_i %>
 				<% @min_players = @min_players.to_s.to_i %>
 				<% @max_players = @max_players.to_s.to_i %>
-			
+				<div>
+
 				<% if @playtime >= get_length[0] && @playtime <= get_length[1] %>
 					<% if get_players != 0 && @min_players <= get_players && @max_players >= get_players %>
-					<div class="list-group-item"">		
-						<a target="_blank" href=<%= "https://boardgamegeek.com/	boardgame/#{game.attr('objectid')}" %>>
-							<%= image_tag(game.css('thumbnail').text) %>
-						<p>
-							<%= game.at('name').text %>
-							<%= "( " + game.css('yearpublished').text + " )" %>
-						</p>
-						</a>
-						<p>
-							<%= " - Average Playtime: " + @playtime.to_s + " 	minutes" 	%>
-							<%= " - " + @min_players.to_s + " to " + @max_players.		to_s + " players" %>
-							<%= " - BGG Rating: " + @bgg_rating.to_s.to_f.round(2).	to_s %>
+					<% if get_ranking <= @bgg_rating.to_s.to_f %>
+					<tr>
+						<th><a target="_blank" href=<%= "https://boardgamegeek.com/boardgame/#{game.attr('objectid')}" %>>
+							<%= image_tag game.css('thumbnail').text, class: "ham" %></a></th>
+						<th><a target="_blank" href=<%= "https://boardgamegeek.com/boardgame/#{game.attr('objectid')}" %>><%= game.at('name').text %></a></th>
+						<th><%= game.css('yearpublished').text %></th>
+						<th><%= @playtime.to_s + " mins" %></th>
+						<th><%= @min_players.to_s + " to " + @max_players.to_s %></th>
+						<th><%= @bgg_rating.to_s.to_f.round(2).to_s %></th>
+						<th><a target="_blank"  href=<%="https://boardgamegeek.com/boardgamefamily/#{@family_id}"%>><%= @family %></th>
 
 							<% @collection_id << game.attr('objectid') %>
-						</p>
+					</tr>
+				
 					</div>
 					<% end %>
+					<% end %>
 				<% end %>	
-				</p>
 			<% end %> 
-		<div id="random">
+			</table>
+		<div id="random" class="text-center">
+			<p>
 			<a target="_blank" href=<%= "https://boardgamegeek.com/boardgame/#{@collection_id.shuffle.pop}" %>>
 				Select a Random Game From My Current Preferences
 			</a>
+			</p>
+			<p>
+				<%= link_to "Make Another Search", search_index_path %>
+			</p>
+			<p> 
+				Please note that this website has no affiliation with BGG
+			</p>
 		</div>
-			<%= link_to "Make Another Search", search_index_path %>
-
 	</div>
 </div>
