@@ -1,24 +1,24 @@
-# README
+# Board Game Selection Tool App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Purpose
 
-Things you may want to cover:
+Building an app which can find the best board games under a selection of preferences. Uses the BGG XML based API.
 
-* Ruby version
+## User Stories
 
-* System dependencies
+A user can find a list of games on the following parameters:
 
-* Configuration
+MPV
+	- How many Players 
+	- Playing Time (Very Short under 30, Short 30-59, Medium 60 - 119, Long 120+ )
+	- Limited to their BGG collection
+	- Can select a random game at the bottom of the list
 
-* Database creation
+Stretch
+	- AJAX calls which instantly load random game 
+	- Save preferences and games tool
 
-* Database initialization
+## Gem Dependancies
 
-* How to run the test suite
+Nokogiri
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
