@@ -30,6 +30,11 @@ module SearchHelper
 		@players = @search[:number_of_players].to_i
 	end
 
+	def get_ranking
+		@ranking = @search[:min_bgg_rating].to_i
+	end
+
+	# Not currently working properly
 	def get_top
 		doc = Nokogiri::HTML(open("https://boardgamegeek.com/browse/boardgame")) do |id|
 			id.strict.nonet
