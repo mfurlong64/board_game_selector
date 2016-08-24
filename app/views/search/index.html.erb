@@ -2,7 +2,7 @@
 	<div class="panel panel-primary col-md-8 col-md-offset-2">
 	<h2> Board Game Selector </h2>
 
-	<p> Filter your Board Game Geek collection by games' player count, length and rating. Each filter also grabs a random game link at the bottom.
+	<p> Filter your Board Game Geek collection by player count, length and rating. Each filter also grabs a random game link at the bottom from your preferences.
 	</p>
   		<%= form_for :search, url: search_index_path do |f| %>
   	<p>
@@ -10,7 +10,7 @@
 		<%= f.text_field :bgg_username, autofocus: true %>
 	</p>
 	<p>
-		<%= f.label :number_of_players %>
+		<%= f.label :number_of_players %> (Optimum)
 		<%= f.text_field :number_of_players, autofocus: true %>
 	</p>
 	<p>
