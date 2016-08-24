@@ -29,22 +29,26 @@
 					<th>Name</th>
 					<th>Year Published</th>
 					<th>Average Playtime</th>
-					<th>Min to Max Players</th>
+					<th>Min to Max (Players)</th>
+					<th>Best With (Players)</th>
 					<th>Bgg Rating</th>
+					<th>Your Ranking</th>
 					<th>Board Game Family</th>
 				</tr>
-			<% @doc.css('item').map do |game| %>
+
+			<% @doc.css('item').each do |game| %>
 				<% @playtime = game.css('stats').attr('playingtime') %>
 				<% @min_players = game.css('stats').attr('minplayers') %>
 				<% @max_players = game.css('stats').attr('maxplayers') %>
 				<% @bgg_rating = game.css('average').attr('value')  %>
+				<% @user_rating = game.css('rating').attr('value') %>
 				<% @family = game.css('rank').last.attr('name') %>
 				<% @family_id = game.css('rank').last.attr('id') %>
+				<% @game_id = game.attr('objectid') %>
 	
 				<% if @max_players == nil then @max_players = @minplayers end %>
-	
+
 				<% @game_id = game.attr('objectid') %>
-				
 				<% @playtime = @playtime.to_s.to_i %>
 				<% @min_players = @min_players.to_s.to_i %>
 				<% @max_players = @max_players.to_s.to_i %>
@@ -60,7 +64,9 @@
 						<th><%= game.css('yearpublished').text %></th>
 						<th><%= @playtime.to_s + " mins" %></th>
 						<th><%= @min_players.to_s + " to " + @max_players.to_s %></th>
+						<th><%= 5 %>
 						<th><%= @bgg_rating.to_s.to_f.round(2).to_s %></th>
+						<th><%= @user_rating.to_s.to_i %></th>
 						<th><a target="_blank"  href=<%="https://boardgamegeek.com/boardgamefamily/#{@family_id}"%>><%= @family %></th>
 
 							<% @collection_id << game.attr('objectid') %>

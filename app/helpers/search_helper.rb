@@ -34,11 +34,15 @@ module SearchHelper
 		@ranking = @search[:min_bgg_rating].to_i
 	end
 
-	# Not currently working properly
-	def get_top
-		doc = Nokogiri::HTML(open("https://boardgamegeek.com/browse/boardgame")) do |id|
-			id.strict.nonet
-		end
+	def get_array_ids
+		
 	end
+
+	# Not currently working properly
+	# def get_top
+	# 	doc = Nokogiri::HTML(open("https://boardgamegeek.com/browse/boardgame")) do |id|
+	# 		id.strict.nonet
+	# 	end
+	# end
 
 end
