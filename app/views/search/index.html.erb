@@ -9,6 +9,7 @@
 		<%= f.label :bgg_username %>
 		<%= f.text_field :bgg_username, autofocus: true %>
 	</p>
+		<!-- number_of_players needs to be added picked from the optimum # of players -->
 	<p>
 		<%= f.label :number_of_players %> (Optimum)
 		<%= f.text_field :number_of_players, autofocus: true %>
@@ -20,6 +21,18 @@
 	<p>
 		<%= f.label :min_bgg_rating %>
 		<%= f.select(:min_bgg_rating, [['N/A', '0'], ['10', '10'], ['9', '9'], ['8', '8'] , ['7', '7'], ['6', '6'], ['5', '5'], ['4', '4'], ['3', '3'], ['2', '2'],['1', '1']]) %>
+
+	</p>
+
+	<!-- The below needs to be added to the search#show -->
+	<p>
+		<%= f.label :user_bgg_rating %>
+		<%= f.select(:user_bgg_rating, [['N/A', '0'], ['10', '10'], ['9', '9'], ['8', '8'] , ['7', '7'], ['6', '6'], ['5', '5'], ['4', '4'], ['3', '3'], ['2', '2'],['1', '1']]) %>
+	</p>
+
+	<p>
+		<%= f.label :complexity %> (1 = light and 5 = super heavy)
+		<%= f.select(:complexity, [['N/A', '0'], ['5', '5'], ['4', '4'], ['3', '3'], ['2', '2'],['1', '1']]) %>
 
 	</p>
 		<%= f.submit "Get Games", class: "btn btn-default" %>

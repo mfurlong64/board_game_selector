@@ -35,7 +35,8 @@
 					<th>Your Ranking</th>
 					<th>Board Game Family</th>
 				</tr>
-
+			<!-- Move to the M or C. Preferably the M -->
+			<!-- Also use a hash to store these vars -->
 			<% @doc.css('item').each do |game| %>
 				<% @playtime = game.css('stats').attr('playingtime') %>
 				<% @min_players = game.css('stats').attr('minplayers') %>
@@ -53,7 +54,10 @@
 				<% @min_players = @min_players.to_s.to_i %>
 				<% @max_players = @max_players.to_s.to_i %>
 				<div>
-
+				<!-- Need to prestore and sort data in the model. This allows for several features which can be implemented later:
+					* Easy Sorting through JQ and AJAX functions
+					* Less processing time in the views
+					* Clarity in what is being called -->
 				<% if @playtime >= get_length[0] && @playtime <= get_length[1] %>
 					<% if get_players != 0 && @min_players <= get_players && @max_players >= get_players %>
 					<% if get_ranking <= @bgg_rating.to_s.to_f %>
