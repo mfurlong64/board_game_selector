@@ -2,13 +2,14 @@
 	<div class="panel panel-primary col-md-8 col-md-offset-2">
 	<h2> Board Game Selector </h2>
 
-	<p> Filter your Board Game Geek collection by games' player count, length and rating. Each filter also grabs a random game link at the bottom.
+	<p> Filter your Board Game Geek collection by player count, length and rating. The app also provides data from your query and collection. Each filter also grabs a random game link at the bottom from your preferences. 
 	</p>
   		<%= form_for :search, url: search_index_path do |f| %>
   	<p>
 		<%= f.label :bgg_username %>
-		<%= f.text_field :bgg_username, autofocus: true %>
+		<%= f.text_field :bgg_username, autofocus: true,  :value => "thetop100" %>
 	</p>
+		<!-- number_of_players needs to be added picked from the optimum # of players -->
 	<p>
 		<%= f.label :number_of_players %>
 		<%= f.text_field :number_of_players, autofocus: true %>
@@ -21,6 +22,12 @@
 		<%= f.label :min_bgg_rating %>
 		<%= f.select(:min_bgg_rating, [['N/A', '0'], ['10', '10'], ['9', '9'], ['8', '8'] , ['7', '7'], ['6', '6'], ['5', '5'], ['4', '4'], ['3', '3'], ['2', '2'],['1', '1']]) %>
 
+	</p>
+
+	<!-- The below needs to be added to the search#show -->
+	<p>
+		<%= f.label :user_bgg_rating %> (Your Rating)
+		<%= f.select(:user_bgg_rating, [['N/A', '0'], ['10', '10'], ['9', '9'], ['8', '8'] , ['7', '7'], ['6', '6'], ['5', '5'], ['4', '4'], ['3', '3'], ['2', '2'],['1', '1']]) %>
 	</p>
 		<%= f.submit "Get Games", class: "btn btn-default" %>
 		<% end %>
