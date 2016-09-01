@@ -29,29 +29,36 @@
 					<th>Name</th>
 					<th>Year Published</th>
 					<th>Average Playtime</th>
-					<th>Min to Max Players</th>
+					<th>Min to Max (Players)</th>
 					<th>Bgg Rating</th>
+					<th>Your Ranking</th>
 					<th>Board Game Family</th>
 				</tr>
-			<% @doc.css('item').map do |game| %>
+			<!-- Move to the M or C. Preferably the M -->
+			<!-- Also use a hash to store these vars -->
+			<% @doc.css('item').each do |game| %>
 				<% @playtime = game.css('stats').attr('playingtime') %>
 				<% @min_players = game.css('stats').attr('minplayers') %>
 				<% @max_players = game.css('stats').attr('maxplayers') %>
 				<% @bgg_rating = game.css('average').attr('value')  %>
+				<% @user_rating = game.css('rating').attr('value') %>
 				<% @family = game.css('rank').last.attr('name') %>
 				<% @family_id = game.css('rank').last.attr('id') %>
+				<% @game_id = game.attr('objectid') %>
 	
 				<% if @max_players == nil then @max_players = @minplayers end %>
-	
+
 				<% @game_id = game.attr('objectid') %>
-				
 				<% @playtime = @playtime.to_s.to_i %>
 				<% @min_players = @min_players.to_s.to_i %>
 				<% @max_players = @max_players.to_s.to_i %>
 				<div>
-
+				<!-- Need to prestore and sort data in the model. This allows for several features which can be implemented later:
+					* Easy Sorting through JQ and AJAX functions
+					* Less processing time in the views
+					* Clarity in what is being called -->
 				<% if @playtime >= get_length[0] && @playtime <= get_length[1] %>
-					<% if get_players != 0 && @min_players <= get_players && @max_players >= get_players %>
+					<% if get_players != 0 && @min_players <= get_players && @max_players >= get_players || get_players == 0 %>
 					<% if get_ranking <= @bgg_rating.to_s.to_f %>
 					<tr>
 						<th><a target="_blank" href=<%= "https://boardgamegeek.com/boardgame/#{game.attr('objectid')}" %>>
@@ -61,6 +68,7 @@
 						<th><%= @playtime.to_s + " mins" %></th>
 						<th><%= @min_players.to_s + " to " + @max_players.to_s %></th>
 						<th><%= @bgg_rating.to_s.to_f.round(2).to_s %></th>
+						<th><%= @user_rating.to_s.to_i %></th>
 						<th><a target="_blank"  href=<%="https://boardgamegeek.com/boardgamefamily/#{@family_id}"%>><%= @family %></th>
 
 							<% @collection_id << game.attr('objectid') %>
