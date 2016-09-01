@@ -13,6 +13,7 @@ module SearchHelper
 		end
 	end
 
+	# Not currently using get_weight or complexity
 	def get_weight
 		@weight = @search[:complexity]
 		if @weight == "Light"
