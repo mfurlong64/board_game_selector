@@ -58,7 +58,7 @@
 					* Less processing time in the views
 					* Clarity in what is being called -->
 				<% if @playtime >= get_length[0] && @playtime <= get_length[1] %>
-					<% if get_players != 0 && @min_players <= get_players && @max_players >= get_players %>
+					<% if get_players != 0 && @min_players <= get_players && @max_players >= get_players || get_players == 0 %>
 					<% if get_ranking <= @bgg_rating.to_s.to_f %>
 					<tr>
 						<th><a target="_blank" href=<%= "https://boardgamegeek.com/boardgame/#{game.attr('objectid')}" %>>
