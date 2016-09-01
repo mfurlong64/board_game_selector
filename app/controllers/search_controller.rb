@@ -17,7 +17,7 @@ class SearchController < ApplicationController
 		end
 		# Moving forward try making the API calls to the model
 		# Controller should only move data back and forth from the M to V
-		@doc_games = Nokogiri::XML(open("https://boardgamegeek.com/xmlapi2/thing?id="+@game_array.join(",")))
+		@doc_games = nil # Nokogiri::XML(open("https://boardgamegeek.com/xmlapi2/thing?id="+@game_array.join(",")))
 
 		render :show
 	end	
