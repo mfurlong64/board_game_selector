@@ -16,12 +16,11 @@
 	</p>
 	<p>
 		<%= f.label :game_length %>
-		<%= f.select(:game_length, [['Any', 'Any'], ['Short (under 1 hour)', 'Short'], ['Medium (1-2 hours)', 'Medium'], ['Long (2+ hours)', 'Long']]) %>
+		<%= f.select(:game_length, [['Any', 'Any'], ['Short (under 45 minutes)', 'Short'], ['Medium (45 minutes - 120 minutes)', 'Medium'], ['Long (120+ minutes)', 'Long']]) %>
 	</p>
 	<p>
 		<%= f.label :min_bgg_rating %>
 		<%= f.select(:min_bgg_rating, [['N/A', '0'], ['10', '10'], ['9', '9'], ['8', '8'] , ['7', '7'], ['6', '6'], ['5', '5'], ['4', '4'], ['3', '3'], ['2', '2'],['1', '1']]) %>
-
 	</p>
 
 	<!-- The below needs to be added to the search#show -->
